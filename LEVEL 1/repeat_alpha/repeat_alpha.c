@@ -6,9 +6,11 @@
 /*   By: noaziki <noaziki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:39:04 by noaziki           #+#    #+#             */
-/*   Updated: 2025/02/04 10:38:58 by noaziki          ###   ########.fr       */
+/*   Updated: 2025/02/04 12:20:56 by noaziki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <unistd.h>
 
 int	checker(char c)
 {

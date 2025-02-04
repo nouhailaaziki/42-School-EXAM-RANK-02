@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   first_word.c                                       :+:      :+:    :+:   */
+/*   rot_13.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: noaziki <noaziki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/02 20:37:25 by noaziki           #+#    #+#             */
-/*   Updated: 2025/02/04 12:20:11 by noaziki          ###   ########.fr       */
+/*   Created: 2025/02/04 11:18:06 by noaziki           #+#    #+#             */
+/*   Updated: 2025/02/04 12:21:24 by noaziki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,24 @@ int	main(int argc, char **argv)
 	i = 0;
 	if (argc == 2)
 	{
-		while (argv[1][i] == ' ' || argv[1][i] == '\t')
+		while (argv[1][i])
+		{
+			if ((argv[1][i] >= 'a' && argv[1][i] < 'n')
+			|| (argv[1][i] >= 'A' && argv[1][i] < 'N'))
+			{
+				argv[1][i] = argv[1][i] + 13;
+				write(1, &argv[1][i], 1);
+			}
+			else if ((argv[1][i] >= 'n' && argv[1][i] <= 'z')
+			|| (argv[1][i] >= 'N' && argv[1][i] <= 'Z'))
+			{
+				argv[1][i] = argv[1][i] - 13;
+				write(1, &argv[1][i], 1);
+			}
+			else
+				write(1, &argv[1][i], 1);
 			i++;
-		while (argv[1][i] && argv[1][i] != ' ' && argv[1][i] != '\t')
-			write(1, &argv[1][i++], 1);
+		}
 	}
 	write(1, "\n", 1);
-	return (0);
 }

@@ -1,46 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fizzbuzz.c                                         :+:      :+:    :+:   */
+/*   rotone.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: noaziki <noaziki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/02 20:40:34 by noaziki           #+#    #+#             */
-/*   Updated: 2025/02/04 12:20:30 by noaziki          ###   ########.fr       */
+/*   Created: 2025/02/04 11:32:59 by noaziki           #+#    #+#             */
+/*   Updated: 2025/02/04 12:33:46 by noaziki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_putnbr(int nb)
-{
-	char	c;
-
-	if (nb > 9)
-		ft_putnbr(nb / 10);
-	c = nb % 10 + 48;
-	write(1, &c, 1);
-}
-
-int	main(void)
+int	main(int argc, char **argv)
 {
 	int	i;
 
-	i = 1;
-	while (i <= 100)
+	i = 0;
+	if (argc == 2)
 	{
-		if (i % 3 == 0 && i % 5 == 0)
-			write(1, "fizzbuzz\n", 9);
-		else if (i % 3 == 0)
-			write(1, "fizz\n", 5);
-		else if (i % 5 == 0)
-			write(1, "buzz\n", 5);
-		else
+		while (argv[1][i])
 		{
-			ft_putnbr(i);
-			write(1, "\n", 1);
+			if (argv[1][i] == 'z' || argv[1][i] == 'Z')
+			{
+				argv[1][i] -= 25;
+				write(1, &argv[1][i], 1);
+			}
+			else if ((argv[1][i] >= 'a' && argv[1][i] <= 'z')
+			|| (argv[1][i] >= 'A' && argv[1][i] <= 'Z'))
+			{
+				argv[1][i] += 1;
+				write(1, &argv[1][i], 1);
+			}
+			else
+				write(1, &argv[1][i], 1);
+			i++;
 		}
-		i++;
 	}
-	return (0);
+	write(1, "\n", 1);
 }
